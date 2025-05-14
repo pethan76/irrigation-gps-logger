@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Irrigation Log with GPS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h3>Getting your location…</h3>
+  <p>If prompted, please allow GPS access.</p>
+
+  <script>
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var lat = pos.coords.latitude;
+      var lon = pos.coords.longitude;
+
+      var formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfcTiFA-9oyDyra7B1fNNrPH6tNP_GdOALD4MSRWLSU-ZDpbw/viewform?usp=pp_url" +
+        "&entry.1325739711=" + encodeURIComponent(lat) +
+        "&entry.2110473159=" + encodeURIComponent(lon);
+
+      window.location.href = formURL;
+    }, function(err) {
+      document.body.innerHTML = "<p style='color:red;'>⚠️ Could not get your location. Please enable GPS in your phone settings and reload this page.</p>";
+    });
+  </script>
+</body>
+</html>
